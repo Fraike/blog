@@ -27,6 +27,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '@/assets/css/public/reset.css',
+    '@/assets/css/public/border.css'
   ],
 
   /*
