@@ -1,13 +1,48 @@
 <template>
-
+    <div class="user-container">
+        <span class="hvr-underline-from-center">Search</span>
+        <span class="hvr-underline-from-center">Log in</span>
+    </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style lang='css'>
+<style lang='stylus' scoped>
+.user-container
+    display flex
+    align-items center
+    >span
+        margin-right 0.5rem
+        cursor pointer
+        margin-bottom: -.2rem;
+        padding-bottom: .2rem;
 
+.hvr-underline-from-center
+    display inline-block
+    vertical-align middle
+    -webkit-transform perspective(1px) translateZ(0)
+    transform perspective(1px) translateZ(0)
+    box-shadow 0 0 1px rgba(0, 0, 0, 0)
+    position relative
+    overflow hidden
+.hvr-underline-from-center:before
+    content ''
+    position absolute
+    z-index -1
+    left 51%
+    right 51%
+    bottom 0
+    background #000
+    height 2px
+    -webkit-transition-property left, right
+    transition-property left, right
+    -webkit-transition-duration 0.3s
+    transition-duration 0.3s
+    -webkit-transition-timing-function ease-out
+    transition-timing-function ease-out
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before
+    left 0
+    right 0
 </style>
