@@ -59,7 +59,13 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+      // console.log('webpack config:', config)
+      // if (ctx.isClient) {
+      //   // 添加 alias 配置
+      //   Object.assign(config.resolve.alias, {
+      //     'assets': path.resolve(__dirname, 'assets')
+      //   })
+      // }
     }
   }
 }

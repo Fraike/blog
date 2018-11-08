@@ -1,13 +1,12 @@
 <template>
-  <article id="fullpage" :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}">
-    <section class="container section " >
+<div>
+  <article v-show="isLoaded" id="fullpage" :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}">
+    <section class="container section">
       <lunbo></lunbo>
       <info></info>
     </section>
     <section class="section">
-       {{$store.state.index.fullPage}}
       <my-article>
-       
       </my-article>
     </section>
     <section class="section ">
@@ -17,6 +16,10 @@
       <about-me></about-me>
     </section>
   </article>
+  <div class="loading-container" v-show="!isLoaded">
+    <loading></loading>
+  </div>
+</div>
 </template>
 
 <script>
@@ -25,13 +28,15 @@ import Info from "~/components/index/info.vue";
 import MyArticle from "~/components/index/article.vue";
 import Share from "~/components/index/share.vue";
 import AboutMe from "~/components/index/aboutMe.vue";
-import { mapActions } from 'vuex'
+import Loading from "~/components/public/loading/loading.vue";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
       fullPage: 0,
       fullPageNum: false,
-      offsetheight: ""
+      offsetheight: "",
+      isLoaded:false
     };
   },
   components: {
@@ -39,20 +44,23 @@ export default {
     Info,
     MyArticle,
     Share,
-    AboutMe
+    AboutMe,
+    Loading,
+    
   },
   mounted() {
+    let self = this;
     if (document.addEventListener) {
       this.offsetheight = document.documentElement.clientHeight;
       console.log(document.documentElement.clientHeight);
       document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
     window.onmousewheel = document.onmousewheel = this.scroll;
+    window.onload = () =>  {
+      self.isLoaded = true
+    }
   },
   methods: {
-    setPage(index){
-
-    },
     scroll(e) {
       e = e || window.event;
       if (this.fullPageNum) {
@@ -63,8 +71,10 @@ export default {
           return false;
         }
         this.fullPageNum = true;
-        this.$store.dispatch('index/setfullPage',this.$store.state.index.fullPage + 1)
-        // this.pageInfo(this.fullPage + 1);
+        this.$store.dispatch(
+          "index/setfullPage",
+          this.$store.state.index.fullPage + 1
+        );
         setTimeout(() => {
           this.fullPageNum = false;
         }, 1000);
@@ -73,31 +83,41 @@ export default {
           return false;
         }
         this.fullPageNum = true;
-        console.log('sf')
-        this.$store.dispatch('index/setfullPage',this.$store.state.index.fullPage - 1)
+        this.$store.dispatch(
+          "index/setfullPage",
+          this.$store.state.index.fullPage - 1
+        );
         setTimeout(() => {
           this.fullPageNum = false;
         }, 1000);
       }
-    },
-    
+    }
   }
 };
 </script>
 
 <style lang='stylus'>
-#fullpage
-  position relative
-  transform translate3d(0px, 0px, 0px)
-  transition all 1000ms ease
-.container
-  display flex
-  justify-content space-between
-  align-items center
-  margin-top 2rem
+#fullpage {
+  position: relative;
+  transform: translate3d(0px, 0px, 0px);
+  transition: all 1000ms ease;
+}
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.loading-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 </style>
