@@ -1,7 +1,7 @@
 <template>
 <div>
   <article v-show="isLoaded" id="fullpage" :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}">
-    <section class="container section">
+    <section class="container section fadeInUp">
       <lunbo></lunbo>
       <info></info>
     </section>
@@ -30,6 +30,8 @@ import Share from "~/components/index/share.vue";
 import AboutMe from "~/components/index/aboutMe.vue";
 import Loading from "~/components/public/loading/loading.vue";
 import { mapActions } from "vuex";
+import 'animate.css'
+// import WOW from 'wowjs'
 export default {
   data() {
     return {
@@ -48,6 +50,12 @@ export default {
     Loading,
     
   },
+  created() {
+    if (typeof window !== 'undefined') {
+    const WOW = require('wowjs')
+    new WOW.WOW().init()
+    }
+  },
   mounted() {
     let self = this;
     if (document.addEventListener) {
@@ -59,6 +67,8 @@ export default {
     window.onload = () =>  {
       self.isLoaded = true
     }
+    
+    
   },
   methods: {
     scroll(e) {
@@ -120,4 +130,20 @@ export default {
 ::-webkit-scrollbar {
   display: none;
 }
+.fadeInUp {
+  animation fadeInUp 1s 
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
 </style>

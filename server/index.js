@@ -4,6 +4,10 @@ import Koa from 'koa'
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
+
+
+import info from './interface/info'
+
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
@@ -21,6 +25,10 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
+
+  app.use(info.routes()).use(info.allowedMethods())
+  
+
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
