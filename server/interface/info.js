@@ -42,32 +42,4 @@ router.get('/getInfo',async (ctx)=>{
       
 })
 
-router.get('/getOneTips',async (ctx)=>{
-    let city = ctx.query.city || "北京"
-    let {
-        status: status2,
-        data: { results2 }
-      } = await axios.post('https://api.hibai.cn/api/index/index',{
-          params:{
-        "TransCode":"030111","OpenId":"123456789","Body":""
-      },
-      dataType: 'json',
-    
-    })
-     console.log(results2)
-      if(status2 === 200) {
-          ctx.body = {
-              code: 1,
-              results2
-
-          }
-      }else {
-          ctx.body = {
-              code: -1
-          }
-      }
-
-      
-})
-
 export default router

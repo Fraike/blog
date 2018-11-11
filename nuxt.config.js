@@ -15,7 +15,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: 'http://cdn.webfont.youziku.com/webfonts/nomal/125046/46908/5be7c3bdf629d90df4596719.css'}
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
@@ -55,10 +56,22 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
+    // proxy: [
+    //   [
+    //     '/api',
+    //     {
+    //       target: 'http://localhost:3000', // api主机
+    //       pathRewrite: {
+    //         '^/api': '/'
+    //       }
+    //     }
+    //   ]
+    // ],
   /*
   ** Axios module configuration
   */
   axios: {
+    proxy: true
     // See https://github.com/nuxt-community/axios-module#options
   },
 

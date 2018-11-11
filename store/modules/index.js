@@ -1,4 +1,4 @@
-const state = () => ({fullPage: 0})
+const state = () => ({fullPage: 1})
 
 const mutations = {
     setfullPage(state, val){
