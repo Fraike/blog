@@ -34,14 +34,16 @@ module.exports = {
   */
   css: [
     '@/assets/css/public/reset.css',
-    '@/assets/css/public/border.css'
+    '@/assets/css/public/border.css',
+    'swiper/dist/css/swiper.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // { src: '~plugins/jquery', ssr: false}
+    { src: "~/plugins/swiper.js", ssr: false }
+    // { src: '~plugins/swiper', ssr: false}
     // new webpack.ProvidePlugin(
     //   {
     //     '$': 'jquery',

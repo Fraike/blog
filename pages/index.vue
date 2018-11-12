@@ -127,7 +127,7 @@ export default {
   transform: translateY(-50%);
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
 }
 .fadeInUp {

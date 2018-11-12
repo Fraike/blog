@@ -7,7 +7,7 @@
         <div class='article'>
             <div class='article-box'>
                 <div class="img-wrapper">
-                    <img src="@/assets/img/article/article2.jpg" alt="">
+                    <img src="@/assets/img/article/article1.jpg" alt="">
                 </div>
                 <h2>Get in infomation</h2>
                 <p>
@@ -27,7 +27,7 @@
             </div>
             <div class='article-box'>
                  <div class="img-wrapper">
-                    <img src="@/assets/img/article/article2.jpg" alt="">
+                    <img src="@/assets/img/article/article3.jpg" alt="">
                 </div>
                 <h2>Get in infomation</h2>
                 <p>
