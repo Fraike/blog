@@ -15,10 +15,12 @@
     <section class="section ">
       <about-me></about-me>
     </section>
+   
   </article>
   <div class="loading-container" v-show="!isLoaded">
     <loading></loading>
   </div>
+  <nuxt-child/>
 </div>
 </template>
 
@@ -31,7 +33,7 @@ import AboutMe from "~/components/index/aboutMe.vue";
 import Loading from "~/components/public/loading/loading.vue";
 import { mapActions } from "vuex";
 import 'animate.css'
-// import WOW from 'wowjs'
+
 export default {
   data() {
     return {
@@ -58,16 +60,14 @@ export default {
   },
   mounted() {
     let self = this;
+
     if (document.addEventListener) {
       this.offsetheight = document.documentElement.clientHeight;
-      console.log(document.documentElement.clientHeight);
       document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
-    window.onmousewheel = document.onmousewheel = this.scroll;
-    window.onload = () =>  {
-      self.isLoaded = true
-    }
-    
+    document.onmousewheel = this.scroll;
+     self.isLoaded = true
+    // document.removeEventListener("DOMMouseScroll",this.scroll)
     
   },
   methods: {

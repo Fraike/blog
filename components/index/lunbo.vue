@@ -1,12 +1,16 @@
 <template>
  <div class="lunbo-container">
-    <img src="@/assets/img/banner.jpg" alt="">
+    <img :src="imgUrl" alt="">
  </div>
 </template>
 
 <script>
 export default {
-
+    data () {
+        return {
+            imgUrl: require("~/assets/img/banner.jpg")
+        }
+    }
 }
 </script>
 

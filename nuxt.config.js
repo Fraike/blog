@@ -42,7 +42,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: "~/plugins/swiper.js", ssr: false }
+    { src: "~/plugins/swiper.js", ssr: false },
+    { src: "~/plugins/lazyload.js", ssr: false }
     // { src: '~plugins/swiper', ssr: false}
     // new webpack.ProvidePlugin(
     //   {
@@ -93,5 +94,6 @@ module.exports = {
       //   })
       // }
     }
-  }
+  },
+  cache: true
 }

@@ -5,35 +5,17 @@
             <div>more</div>
         </div>
         <div class='article'>
-            <div class='article-box'>
+            <div  class='article-box' v-for="(item,index) in articleList" :key="index">
+                 <nuxt-link to="/article">
                 <div class="img-wrapper">
-                    <img src="@/assets/img/article/article1.jpg" alt="">
+                    <img :src="item.imgUrl" alt="">
                 </div>
-                <h2>Get in infomation</h2>
+                <h2>{{item.title}}</h2>
                 <p>
-                    Smile. Swim. Dazzle: Water ballet in the hollywood hills.
+                    {{item.subtitle}}
                 </p>
-                <span>23/11/2017</span>
-            </div>
-            <div class='article-box'>
-                 <div class="img-wrapper">
-                    <img src="@/assets/img/article/article2.jpg" alt="">
-                </div>
-                <h2>Get in infomation</h2>
-                <p>
-                    Smile. Swim. Dazzle: Water ballet in the hollywood hills.
-                </p>
-                <span>23/11/2017</span>
-            </div>
-            <div class='article-box'>
-                 <div class="img-wrapper">
-                    <img src="@/assets/img/article/article3.jpg" alt="">
-                </div>
-                <h2>Get in infomation</h2>
-                <p>
-                    Smile. Swim. Dazzle: Water ballet in the hollywood hills.
-                </p>
-                <span>23/11/2017</span>
+                <span>{{item.time}}</span>
+                </nuxt-link>
             </div>
         </div>
     </div>
@@ -41,6 +23,30 @@
 
 <script>
 export default {
+    data(){
+        return {
+            articleList: [
+                {
+                    title: 'Get in infomation',
+                    imgUrl: require("@/assets/img/article/article1.jpg"),
+                    subtitle: 'Smile. Swim. Dazzle: Water ballet in the hollywood hills.',
+                    time: '23/11/2017'
+                },
+                {
+                    title: 'Get in infomation',
+                    imgUrl: require("@/assets/img/article/article2.jpg"),
+                    subtitle: 'Smile. Swim. Dazzle: Water ballet in the hollywood hills.',
+                    time: '23/11/2017'
+                },
+                {
+                    title: 'Get in infomation',
+                    imgUrl: require("@/assets/img/article/article3.jpg"),
+                    subtitle: 'Smile. Swim. Dazzle: Water ballet in the hollywood hills.',
+                    time: '23/11/2017'
+                }
+            ]
+        }
+    }
 
 }
 </script>
