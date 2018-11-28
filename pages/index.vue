@@ -1,7 +1,8 @@
 <template>
 <div>
   <article v-show="isLoaded" id="fullpage" :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}">
-    <section class="container section fadeInUp">
+    <!-- <section class="container section fadeInUp"> -->
+    <section class="container section" ref="container">
       <lunbo></lunbo>
       <info></info>
     </section>
@@ -54,8 +55,8 @@ export default {
   },
   created() {
     if (typeof window !== 'undefined') {
-    const WOW = require('wowjs')
-    new WOW.WOW().init()
+    // const WOW = require('wowjs')
+    // new WOW.WOW().init()
     }
   },
   mounted() {
@@ -63,9 +64,13 @@ export default {
 
     if (document.addEventListener) {
       this.offsetheight = document.documentElement.clientHeight;
+      console.log(this.offsetheight)
+     
+      
       document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
     document.onmousewheel = this.scroll;
+     console.log(this.$refs.container.style.clientHeight);
      self.isLoaded = true
     // document.removeEventListener("DOMMouseScroll",this.scroll)
     
