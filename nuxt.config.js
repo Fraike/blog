@@ -35,7 +35,8 @@ module.exports = {
   css: [
     '@/assets/css/public/reset.css',
     '@/assets/css/public/border.css',
-    'swiper/dist/css/swiper.css'
+    'swiper/dist/css/swiper.css',
+    '@/assets/main.css'
   ],
 
   /*

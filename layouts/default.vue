@@ -1,6 +1,7 @@
 <template>
   <div>
     <my-header></my-header>
+    <!-- <nuxt/> -->
     <nuxt keep-alive/>
   </div>
 </template>
