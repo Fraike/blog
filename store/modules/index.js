@@ -1,6 +1,7 @@
 const state = () => ({
   fullPage: 0,
-  fullPageNum: false
+  fullPageNum: false,
+  isArticleShow: false
 })
 
 const mutations = {
@@ -10,6 +11,9 @@ const mutations = {
   },
   setfullPageNum(state, val) {
     state.fullPageNum = val
+  },
+  setisArticleShow(state, val) {
+    state.isArticleShow = val
   }
 }
 
@@ -21,10 +25,14 @@ const actions = {
     commit('setfullPage', fullPage)
   },
   setfullPageNum: ({
-      commit
-  },fullPageNum) => {
-      console.log(fullPageNum)
-      commit('setfullPageNum', fullPageNum)
+    commit
+  }, fullPageNum) => {
+    commit('setfullPageNum', fullPageNum)
+  },
+  setisArticleShow: ({
+    commit
+  }, isArticleShow) => {
+    commit('setisArticleShow', isArticleShow)
   }
 }
 

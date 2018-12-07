@@ -24,7 +24,7 @@
       <loading></loading>
     </div>
     <!-- <transition name="fade"> -->
-       <nuxt-child/>
+    <nuxt-child keep-alive/>
     <!-- </transition> -->
   </div>
 </template>
@@ -56,6 +56,12 @@ export default {
     AboutMe,
     Loading
   },
+  watch: {
+    isArticleShow: function(newisArticleShow, oldisArticleShow) {
+      console.log("newisArticleShow");
+      window.onmousewheel = document.onmousewheel = null;
+    }
+  },
   // computed:
   //   // console.log()
   //   // ...mapState({
@@ -66,7 +72,8 @@ export default {
   //   }),
   computed: {
     ...mapState({
-      fullPageNum: state => state.index.fullPageNum
+      fullPageNum: state => state.index.fullPageNum,
+      isArticleShow: state => state.index.isArticleShow,
     })
   },
   created() {
@@ -80,9 +87,7 @@ export default {
 
     if (document.addEventListener) {
       this.offsetheight = document.documentElement.clientHeight;
-      // console.log(this.offsetheight)
-
-      document.addEventListener("DOMMouseScroll", this.scroll, false);
+      // document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
     window.onmousewheel = document.onmousewheel = this.scroll;
     //  console.log(this.$refs.container.style.clientHeight);
@@ -91,6 +96,7 @@ export default {
   },
   methods: {
     scroll(e) {
+      console.log(e);
       e = e || window.event;
       // console.log(this.setfullPageNum);
       // this.setfullPageNum(true)
@@ -124,11 +130,12 @@ export default {
       }
     },
     ...mapActions({
-      setfullPageNum: "index/setfullPageNum"
+      setfullPageNum: "index/setfullPageNum",
+      setisArticleShow: "index/setisArticleShow"
     })
   },
   beforeRouteLeave(to, from, next) {
-    console.log('exit')
+    console.log("exit");
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
@@ -162,12 +169,8 @@ body::-webkit-scrollbar
   to
     opacity 1
     transform translate3d(0, 0, 0)
-
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+.fade-enter-active, .fade-leave-active
+  transition opacity 0.5s
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+  opacity 0
 </style>

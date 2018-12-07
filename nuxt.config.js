@@ -44,13 +44,8 @@ module.exports = {
   */
   plugins: [
     { src: "~/plugins/swiper.js", ssr: false },
-    { src: "~/plugins/lazyload.js", ssr: false }
-    // { src: '~plugins/swiper', ssr: false}
-    // new webpack.ProvidePlugin(
-    //   {
-    //     '$': 'jquery',
-    //   }
-    // )
+    { src: "~/plugins/lazyload.js", ssr: false },
+    { src: "~/plugins/markdown.js", ssr: false }
   ],
 
   /*

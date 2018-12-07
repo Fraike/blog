@@ -4,13 +4,35 @@ import Koa from 'koa'
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
+import mongoose from 'mongoose'
+import dbConfig from './dbs/config'
+
 
 
 import info from './interface/info'
+import article from './interface/article'
 
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
+
+//链接数据库
+mongoose.connect(dbConfig.dbs,{
+  useNewUrlParser: true
+})
+// mongoose.connect(dbConfig.dbs,function(err,db){
+//   if(err)throw err;
+//   console.log('数据库已创建')
+//   var dbase = db.db("runoob");
+//     dbase.createCollection('site', function (err, res) {
+//         if (err) throw err;
+//         console.log("创建集合!");
+//         db.close();
+//     });
+// })
+
+
+
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -27,6 +49,7 @@ async function start() {
   }
 
   app.use(info.routes()).use(info.allowedMethods())
+  app.use(article.routes()).use(article.allowedMethods())
   
 
 
