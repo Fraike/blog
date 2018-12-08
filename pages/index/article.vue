@@ -1,24 +1,20 @@
 <template>
-  <transition name="test">
-    <div class="article-wrapper">
-      <!-- <transition name="slide-fade"> -->
-      <div class="article-container">
-        <mavon-editor
-          class="md"
-          :value="context"
-          :subfield="prop.subfield"
-          :defaultOpen="prop.defaultOpen"
-          :toolbarsFlag="prop.toolbarsFlag"
-          :editable="prop.editable"
-          :scrollStyle="prop.scrollStyle"
-        ></mavon-editor>
-      </div>
-      <nuxt-link to="/">
-        <div @click="back" class="back">返回</div>
-      </nuxt-link>
-      <!-- </transition> -->
+  <div class="article-wrapper">
+    <div class="article-container" :class="isShow?'fadeInUp':'fadeOutDown'">
+      <mavon-editor
+        class="md"
+        :value="context"
+        :subfield="prop.subfield"
+        :defaultOpen="prop.defaultOpen"
+        :toolbarsFlag="prop.toolbarsFlag"
+        :editable="prop.editable"
+        :scrollStyle="prop.scrollStyle"
+      ></mavon-editor>
     </div>
-  </transition>
+    <!-- <nuxt-link to="/"> -->
+    <div @click="back" class="back">返回</div>
+    <!-- </nuxt-link> -->
+  </div>
 </template>
 
 <script>
@@ -29,42 +25,13 @@ export default {
   data() {
     return {
       context: "", //输入的数据
-      toolbars: {
-        bold: true, // 粗体
-        italic: true, // 斜体
-        header: true, // 标题
-        underline: true, // 下划线
-        mark: true, // 标记
-        superscript: true, // 上角标
-        quote: true, // 引用
-        ol: true, // 有序列表
-        link: true, // 链接
-        imagelink: true, // 图片链接
-        help: true, // 帮助
-        code: true, // code
-        subfield: true, // 是否需要分栏
-        fullscreen: true, // 全屏编辑
-        readmodel: true, // 沉浸式阅读
-        /* 1.3.5 */
-        undo: true, // 上一步
-        trash: true, // 清空
-        save: true, // 保存（触发events中的save事件）
-        /* 1.4.2 */
-        navigation: true // 导航目录
-      }
+      isShow: true
     };
   },
   mounted() {
-    console.log("加载文章页");
     this.setfullPageNum(true);
     this.setisArticleShow(true);
     this.context = this.result[0].content;
-    if (document.addEventListener) {
-      // document.addEventListener("DOMMouseScroll", this.scroll, true);
-    }
-    // window.onmousewheel = document.onmousewheel = this.scroll;
-    // window.onmousewheel = document.onmousewheel = this.scroll
-    console.log(window.onmousewheel, document.onmousewheel);
   },
   computed: {
     prop() {
@@ -85,8 +52,11 @@ export default {
       setisArticleShow: "index/setisArticleShow"
     }),
     back() {
-      console.log("back");
-       this.setisArticleShow(false);
+      this.setisArticleShow(false);
+      this.isShow = false;
+      setTimeout(() => {
+        this.$router.push({ path: "/" });
+      }, 300);
     },
     scroll(e) {
       e = e || window.event;
@@ -112,7 +82,7 @@ export default {
 
 <style lang='stylus' scoped>
 .article-wrapper
-  position absolute
+  position fixed
   top 0px
   left 0px
   right 0px
@@ -150,4 +120,22 @@ export default {
   cursor pointer
 .md
   // margin-top .5rem
+.fadeInUp
+  animation fadeInUp 0.5s
+@keyframes fadeInUp
+  from
+    // opacity 0
+    transform translate3d(0, 100%, 0)
+  to
+    // opacity 1
+    transform translate3d(0, 0, 0)
+.fadeOutDown
+  animation fadeOutDown 0.5s
+@keyframes fadeOutDown
+  from
+    opacity 1
+    transform translate3d(0, 0, 0)
+  to
+    opacity 0
+    transform translate3d(0, 100%, 0)
 </style>

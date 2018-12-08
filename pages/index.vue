@@ -58,8 +58,8 @@ export default {
   },
   watch: {
     isArticleShow: function(newisArticleShow, oldisArticleShow) {
-      console.log("newisArticleShow");
-      window.onmousewheel = document.onmousewheel = null;
+      // console.log("newisArticleShow");
+      // window.onmousewheel = document.onmousewheel = null;
     }
   },
   // computed:
@@ -89,14 +89,14 @@ export default {
       this.offsetheight = document.documentElement.clientHeight;
       // document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
-    window.onmousewheel = document.onmousewheel = this.scroll;
+    // window.onmousewheel = document.onmousewheel = this.scroll;
     //  console.log(this.$refs.container.style.clientHeight);
     self.isLoaded = true;
     // document.removeEventListener("DOMMouseScroll",this.scroll)
   },
   methods: {
     scroll(e) {
-      console.log(e);
+      // console.log(e);
       e = e || window.event;
       // console.log(this.setfullPageNum);
       // this.setfullPageNum(true)
@@ -135,7 +135,7 @@ export default {
     })
   },
   beforeRouteLeave(to, from, next) {
-    console.log("exit");
+    // console.log("exit");
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
