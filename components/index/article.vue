@@ -8,7 +8,7 @@
       <div class="article-box" v-for="(item,index) in articleList" :key="index">
         <nuxt-link to="/article">
           <div class="img-wrapper">
-            <img :src="item.imgUrl" alt>
+            <img :data-original="item.imgUrl" src="@/assets/img/error.jpg" alt ref="articleBox">
           </div>
           <h2>{{item.title}}</h2>
           <p>{{item.subtitle}}</p>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapState,mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -42,8 +43,27 @@ export default {
           subtitle: "Smile. Swim. Dazzle: Water ballet in the hollywood hills.",
           time: "23/11/2017"
         }
-      ]
+      ],
+      // viewHeight: "",
+      imgBox: []
     };
+  },
+  mounted() {
+    console.log("懒加载");
+    // this.viewHeight = document.documentElement.clientHeight;
+    this.imgBox = this.$refs.articleBox;
+    // console.log(this.viewHeight);
+    // console.log(this.imgBox);
+    this.setImgBox(this.imgBox)
+    // document.addEventListener("DOMMouseScroll", this.lazyload, false);
+
+    // window.addEventListener("scroll",this.lazyload)
+    // window.onmousewheel = document.onmousewheel = this.lazyload;
+  },
+  methods: {
+    ...mapActions({
+      setImgBox: "index/setimgList"
+    })
   }
 };
 </script>

@@ -5,5 +5,6 @@ Vue.use(VueLazyload,{
     preLoad: 1.3,
     error: '~/assets/img/error.jpg',
     loading: require('~/assets/img/load.gif'),
-    attempt: 1
+    attempt: 1,
+    listenEvents: ["scroll"]
 })

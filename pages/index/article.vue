@@ -1,5 +1,5 @@
 <template>
-  <div class="article-wrapper">
+  <div class="article-wrapper" @click.stop ="stop()">
     <div class="article-container" :class="isShow?'fadeInUp':'fadeOutDown'">
       <mavon-editor
         class="md"
@@ -9,11 +9,12 @@
         :toolbarsFlag="prop.toolbarsFlag"
         :editable="prop.editable"
         :scrollStyle="prop.scrollStyle"
+        :ishljs="prop.ishljs"
       ></mavon-editor>
     </div>
-    <!-- <nuxt-link to="/"> -->
+    <nuxt-link to="/">
     <div @click="back" class="back">返回</div>
-    <!-- </nuxt-link> -->
+    </nuxt-link>
   </div>
 </template>
 
@@ -32,6 +33,8 @@ export default {
     this.setfullPageNum(true);
     this.setisArticleShow(true);
     this.context = this.result[0].content;
+     window.onmousewheel = document.onmousewheel = this.scroll;
+    //  document.addEventListener("DOMMouseScroll", this.scroll, false);
   },
   computed: {
     prop() {
@@ -56,10 +59,17 @@ export default {
       this.isShow = false;
       setTimeout(() => {
         this.$router.push({ path: "/" });
-      }, 300);
+      }, 250);
     },
     scroll(e) {
       e = e || window.event;
+      console.log(e)
+      // e.stopPropagation();
+    },
+    stop(e){
+      console.log(e)
+      return false;
+    // e.stopPropagation()
     }
   },
   destroyed() {
@@ -83,6 +93,8 @@ export default {
 <style lang='stylus' scoped>
 .article-wrapper
   position fixed
+  width 100%
+  height 100%
   top 0px
   left 0px
   right 0px
@@ -92,10 +104,11 @@ export default {
   z-index 999
   .article-container
     width 50%
-    height 30rem
+    // height 30rem
     // overflow-y scroll
     margin 0 auto
     margin-top 1rem
+    margin-bottom .5rem
     overflow hidden
     border-radius 0.5rem
     background-color #fff
@@ -121,7 +134,7 @@ export default {
 .md
   // margin-top .5rem
 .fadeInUp
-  animation fadeInUp 0.5s
+  animation fadeInUp 0.3s
 @keyframes fadeInUp
   from
     // opacity 0
@@ -130,7 +143,7 @@ export default {
     // opacity 1
     transform translate3d(0, 0, 0)
 .fadeOutDown
-  animation fadeOutDown 0.5s
+  animation fadeOutDown 0.3s
 @keyframes fadeOutDown
   from
     opacity 1

@@ -1,30 +1,34 @@
 <template>
   <div>
-    <article
-      v-show="isLoaded"
-      id="fullpage"
-      :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}"
-    >
-      <!-- <section class="container section fadeInUp"> -->
-      <section class="container section" ref="container">
-        <lunbo></lunbo>
-        <info></info>
-      </section>
-      <section class="section">
-        <my-article></my-article>
-      </section>
-      <section class="section">
-        <share></share>
-      </section>
-      <section class="section">
-        <about-me></about-me>
-      </section>
-    </article>
-    <div class="loading-container" v-show="!isLoaded">
-      <loading></loading>
+    <div :style="isFixed" ref="indexWrapper">
+      <article
+        v-show="isLoaded"
+        id="fullpage"
+        :style="{'transform': 'translate3d(0px,-'+ $store.state.index.fullPage*offsetheight  +'px, 0px)'}"
+      >
+        <!-- <section class="container section fadeInUp"> -->
+        <section class="container section" ref="container">
+          <lunbo></lunbo>
+          <info></info>
+        </section>
+        <section class="section">
+          <my-article></my-article>
+        </section>
+        <section class="section">
+          <share></share>
+        </section>
+        <section class="section">
+          <about-me></about-me>
+        </section>
+      </article>
+      <div class="loading-container" v-show="!isLoaded">
+        <loading></loading>
+      </div>
+    </div>
+    <div>
+      <nuxt-child keep-alive></nuxt-child>
     </div>
     <!-- <transition name="fade"> -->
-    <nuxt-child keep-alive/>
     <!-- </transition> -->
   </div>
 </template>
@@ -45,7 +49,11 @@ export default {
       fullPage: 0,
       // fullPageNum: this.$store.state.index.fullPageNum,
       offsetheight: "",
-      isLoaded: false
+      isLoaded: false,
+      isFixed: {
+        height: "100%",
+        overflow: "hidden"
+      }
     };
   },
   components: {
@@ -59,7 +67,12 @@ export default {
   watch: {
     isArticleShow: function(newisArticleShow, oldisArticleShow) {
       // console.log("newisArticleShow");
-      // window.onmousewheel = document.onmousewheel = null;
+      window.onmousewheel = document.onmousewheel = null;
+      this.isFixed.height = this.offsetheight + "px";
+      // console.log(this.$refs.indexWrapper);
+
+      // this.$refs.indexWrapper.style.height =  this.offsetheight
+      // document.removeEventListener("DOMMouseScroll", this.scroll);
     }
   },
   // computed:
@@ -73,7 +86,7 @@ export default {
   computed: {
     ...mapState({
       fullPageNum: state => state.index.fullPageNum,
-      isArticleShow: state => state.index.isArticleShow,
+      isArticleShow: state => state.index.isArticleShow
     })
   },
   created() {
@@ -89,15 +102,18 @@ export default {
       this.offsetheight = document.documentElement.clientHeight;
       // document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
-    // window.onmousewheel = document.onmousewheel = this.scroll;
+    window.onmousewheel = document.onmousewheel = this.scroll;
     //  console.log(this.$refs.container.style.clientHeight);
     self.isLoaded = true;
+    // this.lazyload();
     // document.removeEventListener("DOMMouseScroll",this.scroll)
   },
   methods: {
     scroll(e) {
       // console.log(e);
+      // console.log(this.$refs)
       e = e || window.event;
+      // return false;
       // console.log(this.setfullPageNum);
       // this.setfullPageNum(true)
       if (this.fullPageNum) {
@@ -128,6 +144,33 @@ export default {
           this.setfullPageNum(false);
         }, 1000);
       }
+      this.lazyload();
+    },
+    lazyload() {
+      // console.log("ss");
+      let self = this;
+      Array.prototype.forEach.call(self.$store.state.index.imgList, function(
+        item,
+        index
+      ) {
+        let rect;
+        rect = item.getBoundingClientRect();
+        console.log(self.offsetheight,rect)
+        if (rect.bottom >= 0 && rect.top > self.offsetheight) {
+         !function(){
+           console.log('加载')
+           var img = new Image()
+           console.log(item.dataset);
+           
+           img.src = item.dataset.original
+           img.onload = function(){
+             item.src = img.src
+           }
+           item.removeAttribute("data-original")
+         }()
+        }
+        // console.log(rect);
+      });
     },
     ...mapActions({
       setfullPageNum: "index/setfullPageNum",
