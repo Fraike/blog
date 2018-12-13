@@ -2,7 +2,8 @@ const state = () => ({
   fullPage: 0,
   fullPageNum: false,
   isArticleShow: false,
-  imgList: []
+  imgList: [],
+  shareTop: null
 })
 
 const mutations = {
@@ -18,6 +19,9 @@ const mutations = {
   },
   setimgList(state,val){
     state.imgList = val
+  },
+  setshareTop(state,val){
+    state.shareTop = val
   }
 }
 
@@ -42,6 +46,11 @@ const actions = {
     commit
   }, imgList) => {
     commit('setimgList', imgList)
+  },
+  setshareTop: ({
+    commit
+  }, shareTop) => {
+    commit('setshareTop', shareTop)
   }
 }
 

@@ -63,7 +63,7 @@ export default {
     },
     scroll(e) {
       e = e || window.event;
-      console.log(e)
+      // console.log(e)
       // e.stopPropagation();
     },
     stop(e){

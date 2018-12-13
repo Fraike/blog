@@ -26,7 +26,7 @@
       </div>
     </div>
     <div>
-      <nuxt-child keep-alive></nuxt-child>
+       <nuxt-child keep-alive />
     </div>
     <!-- <transition name="fade"> -->
     <!-- </transition> -->
@@ -75,25 +75,11 @@ export default {
       // document.removeEventListener("DOMMouseScroll", this.scroll);
     }
   },
-  // computed:
-  //   // console.log()
-  //   // ...mapState({
-  //   //   fullPageNum: 'index/fullPageNum'
-  //   // })
-  //   mapState({
-  //     fullPageNum: state => state.index.fullPageNum
-  //   }),
   computed: {
     ...mapState({
       fullPageNum: state => state.index.fullPageNum,
       isArticleShow: state => state.index.isArticleShow
     })
-  },
-  created() {
-    if (typeof window !== "undefined") {
-      // const WOW = require('wowjs')
-      // new WOW.WOW().init()
-    }
   },
   mounted() {
     let self = this;
@@ -103,19 +89,12 @@ export default {
       // document.addEventListener("DOMMouseScroll", this.scroll, false);
     }
     window.onmousewheel = document.onmousewheel = this.scroll;
-    //  console.log(this.$refs.container.style.clientHeight);
     self.isLoaded = true;
-    // this.lazyload();
-    // document.removeEventListener("DOMMouseScroll",this.scroll)
+    this.lazyload();
   },
   methods: {
     scroll(e) {
-      // console.log(e);
-      // console.log(this.$refs)
       e = e || window.event;
-      // return false;
-      // console.log(this.setfullPageNum);
-      // this.setfullPageNum(true)
       if (this.fullPageNum) {
         return false;
       }
@@ -147,7 +126,6 @@ export default {
       this.lazyload();
     },
     lazyload() {
-      // console.log("ss");
       let self = this;
       Array.prototype.forEach.call(self.$store.state.index.imgList, function(
         item,
@@ -156,12 +134,9 @@ export default {
         let rect;
         rect = item.getBoundingClientRect();
         console.log(self.offsetheight,rect)
-        if (rect.bottom >= 0 && rect.top > self.offsetheight) {
+        if ((rect.bottom >= 0 && rect.top > self.offsetheight)||rect.top==0) {
          !function(){
-           console.log('加载')
-           var img = new Image()
-           console.log(item.dataset);
-           
+           var img = new Image()        
            img.src = item.dataset.original
            img.onload = function(){
              item.src = img.src

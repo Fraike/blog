@@ -9,6 +9,9 @@
         <nuxt-link to="/article">
           <div class="img-wrapper">
             <img :data-original="item.imgUrl" src="@/assets/img/error.jpg" alt ref="articleBox">
+            <!-- <img v-lazy="item.imgUrl" alt ref="articleBox"> -->
+            <!-- <img :src="item.imgUrl" alt=""> -->
+
           </div>
           <h2>{{item.title}}</h2>
           <p>{{item.subtitle}}</p>
