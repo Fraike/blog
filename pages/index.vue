@@ -26,7 +26,7 @@
       </div>
     </div>
     <div>
-       <nuxt-child keep-alive />
+      <nuxt-child/>
     </div>
     <!-- <transition name="fade"> -->
     <!-- </transition> -->
@@ -81,7 +81,18 @@ export default {
       isArticleShow: state => state.index.isArticleShow
     })
   },
-  mounted() {
+  // mounted() {
+  //   let self = this;
+
+  //   if (document.addEventListener) {
+  //     this.offsetheight = document.documentElement.clientHeight;
+  //     // document.addEventListener("DOMMouseScroll", this.scroll, false);
+  //   }
+  //   window.onmousewheel = document.onmousewheel = this.scroll;
+  //   self.isLoaded = true;
+  //   this.lazyload();
+  // },
+  activated() {
     let self = this;
 
     if (document.addEventListener) {
@@ -123,6 +134,10 @@ export default {
           this.setfullPageNum(false);
         }, 1000);
       }
+      // console.log(this.$store.state.index.fullPage)
+      if (this.$store.state.index.fullPage === 2) {
+        this.setshowShare(true);
+      }
       this.lazyload();
     },
     lazyload() {
@@ -133,30 +148,23 @@ export default {
       ) {
         let rect;
         rect = item.getBoundingClientRect();
-        console.log(self.offsetheight,rect)
-        if ((rect.bottom >= 0 && rect.top > self.offsetheight)||rect.top==0) {
-         !function(){
-           var img = new Image()        
-           img.src = item.dataset.original
-           img.onload = function(){
-             item.src = img.src
-           }
-           item.removeAttribute("data-original")
-         }()
+        if ((rect.top > self.offsetheight && item.dataset.original)||(self.isArticleShow && rect.top === 0)) {
+          !(function() {
+            var img = new Image();
+            img.src = item.dataset.original;
+            img.onload = function() {
+              item.src = img.src;
+            };
+            item.removeAttribute("data-original");
+          })();
         }
-        // console.log(rect);
       });
     },
     ...mapActions({
       setfullPageNum: "index/setfullPageNum",
-      setisArticleShow: "index/setisArticleShow"
+      setisArticleShow: "index/setisArticleShow",
+      setshowShare: "index/setshowShare"
     })
-  },
-  beforeRouteLeave(to, from, next) {
-    // console.log("exit");
-    // 在渲染该组件的对应路由被 confirm 前调用
-    // 不！能！获取组件实例 `this`
-    // 因为当守卫执行前，组件实例还没被创建
   }
 };
 </script>

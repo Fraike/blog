@@ -8,7 +8,7 @@
       <div class="article-box" v-for="(item,index) in articleList" :key="index">
         <nuxt-link to="/article">
           <div class="img-wrapper">
-            <img :data-original="item.imgUrl" src="@/assets/img/error.jpg" alt ref="articleBox">
+            <img :data-original="item.imgUrl" src="@/assets/img/load.gif" alt ref="articleBox">
             <!-- <img v-lazy="item.imgUrl" alt ref="articleBox"> -->
             <!-- <img :src="item.imgUrl" alt=""> -->
 
@@ -47,21 +47,12 @@ export default {
           time: "23/11/2017"
         }
       ],
-      // viewHeight: "",
       imgBox: []
     };
   },
   mounted() {
-    console.log("懒加载");
-    // this.viewHeight = document.documentElement.clientHeight;
     this.imgBox = this.$refs.articleBox;
-    // console.log(this.viewHeight);
-    // console.log(this.imgBox);
     this.setImgBox(this.imgBox)
-    // document.addEventListener("DOMMouseScroll", this.lazyload, false);
-
-    // window.addEventListener("scroll",this.lazyload)
-    // window.onmousewheel = document.onmousewheel = this.lazyload;
   },
   methods: {
     ...mapActions({
@@ -82,7 +73,7 @@ export default {
   justify-content space-between
   align-items flex-end
   h2
-    font-family 'GoodVibrationsROB'
+    font-family "GoodVibrationsROB", Times, serif
     color #000
     font-size 1.5rem
   div

@@ -1,5 +1,5 @@
 <template>
-  <div class="article-wrapper" @click.stop ="stop()">
+  <div class="article-wrapper" @click.stop="stop()">
     <div class="article-container" :class="isShow?'fadeInUp':'fadeOutDown'">
       <mavon-editor
         class="md"
@@ -13,7 +13,7 @@
       ></mavon-editor>
     </div>
     <nuxt-link to="/">
-    <div @click="back" class="back">返回</div>
+      <div @click="back" class="back">返回</div>
     </nuxt-link>
   </div>
 </template>
@@ -29,11 +29,13 @@ export default {
       isShow: true
     };
   },
-  mounted() {
+  activated() {
     this.setfullPageNum(true);
     this.setisArticleShow(true);
     this.context = this.result[0].content;
-     window.onmousewheel = document.onmousewheel = this.scroll;
+    window.onmousewheel = document.onmousewheel = this.scroll;
+  },
+  mounted() {
     //  document.addEventListener("DOMMouseScroll", this.scroll, false);
   },
   computed: {
@@ -66,14 +68,17 @@ export default {
       // console.log(e)
       // e.stopPropagation();
     },
-    stop(e){
-      console.log(e)
+    stop(e) {
+      console.log(e);
       return false;
-    // e.stopPropagation()
+      // e.stopPropagation()
     }
   },
-  destroyed() {
+  deactivated() {
     this.setfullPageNum(false);
+  },
+  destroyed() {
+    // this.setfullPageNum(false);
   },
   async asyncData(ctx) {
     let {
@@ -108,7 +113,7 @@ export default {
     // overflow-y scroll
     margin 0 auto
     margin-top 1rem
-    margin-bottom .5rem
+    margin-bottom 0.5rem
     overflow hidden
     border-radius 0.5rem
     background-color #fff

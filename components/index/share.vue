@@ -1,5 +1,5 @@
 <template>
-  <div class="share-container ">
+  <div class="share-container">
     <div class="swiper-container" v-swiper:mySwiper="swiperOption" ref="swiperBox" v-if="isShow">
       <div class="prev swiper-button-prev swiper-button-black"></div>
       <div class="share-box swiper-wrapper">
@@ -190,14 +190,18 @@ export default {
   components: {
     Loading
   },
-  mounted() {
-    let self = this
-    // console.log(this.mySwiper.init())
-    console.log(this.$refs.swiperBox.getBoundingClientRect())
-    setTimeout(()=>{
-      self.isShow = true
-      self.mySwiper.init()
-    },8000)
+  // mounted() {
+
+  // },
+  watch: {
+    isShowShare: function(newisArticleShow, oldisArticleShow) {
+      this.mySwiper.init();
+    }
+  },
+  computed: {
+    ...mapState({
+      isShowShare: state => state.index.isShowShare
+    })
   },
   methods: {
     ...mapActions({
@@ -259,7 +263,6 @@ export default {
   position absolute
   top 50%
   right 0
-
 .loading-container
   position absolute
   width 100%

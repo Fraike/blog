@@ -3,7 +3,8 @@ const state = () => ({
   fullPageNum: false,
   isArticleShow: false,
   imgList: [],
-  shareTop: null
+  shareTop: null,
+  isShowShare:false
 })
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
   },
   setshareTop(state,val){
     state.shareTop = val
+  },
+  setshowShare(state,val){
+    state.isShowShare = val
   }
 }
 
@@ -51,6 +55,11 @@ const actions = {
     commit
   }, shareTop) => {
     commit('setshareTop', shareTop)
+  },
+  setshowShare: ({
+    commit
+  }, isShowShare) => {
+    commit('setshowShare', isShowShare)
   }
 }
 

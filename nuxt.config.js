@@ -16,7 +16,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'text/css', href: 'http://cdn.webfont.youziku.com/webfonts/nomal/125046/46908/5be7c3bdf629d90df4596719.css'}
+      { rel: 'stylesheet', type: 'text/css', href: 'http://cdn.webfont.youziku.com/webfonts/nomal/125046/46908/5c2c2d7bf629d90c54a4514b.css'}
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }

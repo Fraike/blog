@@ -1,8 +1,8 @@
 <template>
   <div>
     <my-header></my-header>
-    <nuxt/>
-    <!-- <nuxt keep-alive/> -->
+    <!-- <nuxt/> -->
+    <nuxt keep-alive/>
   </div>
 </template>
 
