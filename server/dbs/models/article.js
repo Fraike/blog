@@ -1,10 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const Article = new Schema({
-  id: {
-    type: Number,
-    require: true
-  },
   title: {
     type: String,
     require: true
@@ -24,7 +20,8 @@ const Article = new Schema({
   comments: [{
     body: String,
     date: Date
-  }]
+  }
+]
 })
 
 export default mongoose.model('Article', Article)

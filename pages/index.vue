@@ -20,6 +20,7 @@
         <section class="section">
           <about-me></about-me>
         </section>
+        <Footer></Footer>
       </article>
       <div class="loading-container" v-show="!isLoaded">
         <loading></loading>
@@ -39,6 +40,7 @@ import Info from "~/components/index/info.vue";
 import MyArticle from "~/components/index/article.vue";
 import Share from "~/components/index/share.vue";
 import AboutMe from "~/components/index/aboutMe.vue";
+import Footer from '@/components/public/footer/footer.vue';
 import Loading from "~/components/public/loading/loading.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import "animate.css";
@@ -62,7 +64,8 @@ export default {
     MyArticle,
     Share,
     AboutMe,
-    Loading
+    Loading,
+    Footer
   },
   watch: {
     isArticleShow: function(newisArticleShow, oldisArticleShow) {

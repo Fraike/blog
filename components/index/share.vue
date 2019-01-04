@@ -71,11 +71,11 @@ export default {
           title: "云南之旅 2018",
           imgList: [
             {
-              imgUrl: require("~/assets/img/article/article4.jpg"),
+              imgUrl: require("~/assets/img/article/article3.jpg"),
               time: "25.02.2018"
             },
             {
-              imgUrl: require("~/assets/img/article/article4.jpg"),
+              imgUrl: require("~/assets/img/article/article3.jpg"),
               time: "25.02.2018"
             },
             {
@@ -249,8 +249,10 @@ export default {
       display inline-block
       width 45%
       margin 0 0.2rem 0.3rem 0
+      height: 4rem
       img
-        width 100%
+        max-width 100%
+        max-height 100%
         border-radius 0.1rem
         margin-bottom 0.2rem
         cursor pointer
