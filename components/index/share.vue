@@ -215,13 +215,18 @@ export default {
 .share-container >>> .swiper-pagination-bullet-active
   opacity 1
   background #000
+
+.share-container >>> .swiper-container
+  padding-bottom .4rem
+
+
 .share-container
   width 86%
   height 15rem
   margin 0 auto
   margin-top 3.5rem
   position relative
-  overflow hidden
+  // overflow hidden
   // display: flex;
   // justify-content: space-between;
   // align-items: center;
@@ -249,7 +254,7 @@ export default {
       display inline-block
       width 45%
       margin 0 0.2rem 0.3rem 0
-      height: 4rem
+      height: 4.4rem
       img
         max-width 100%
         max-height 100%

@@ -18,7 +18,7 @@
           <share></share>
         </section>
         <section class="section">
-          <about-me></about-me>
+          <LinkCom></LinkCom>
         </section>
         <Footer></Footer>
       </article>
@@ -39,7 +39,7 @@ import Lunbo from "~/components/index/lunbo.vue";
 import Info from "~/components/index/info.vue";
 import MyArticle from "~/components/index/article.vue";
 import Share from "~/components/index/share.vue";
-import AboutMe from "~/components/index/aboutMe.vue";
+import LinkCom from "~/components/index/link.vue";
 import Footer from '@/components/public/footer/footer.vue';
 import Loading from "~/components/public/loading/loading.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
@@ -63,7 +63,7 @@ export default {
     Info,
     MyArticle,
     Share,
-    AboutMe,
+    LinkCom,
     Loading,
     Footer
   },

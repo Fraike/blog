@@ -4,8 +4,8 @@
       <h2 class>all article</h2>
       <div>more</div>
     </div>
-    <div class="article">
-      <div class="article-box" v-for="(item,index) in articleList" :key="index">
+    <div class="article ">
+      <div class="article-box hvr-grow" v-for="(item,index) in articleList" :key="index">
         <nuxt-link to="/article">
           <div class="img-wrapper">
             <img :data-original="item.imgUrl" src="@/assets/img/load.gif" alt ref="articleBox">
@@ -13,9 +13,11 @@
             <!-- <img :src="item.imgUrl" alt=""> -->
 
           </div>
-          <h2>{{item.title}}</h2>
-          <p>{{item.subtitle}}</p>
-          <span>{{item.time}}</span>
+          <div class="text-wrapper ">
+             <h2>{{item.title}}</h2>
+            <p>{{item.subtitle}}</p>
+            <span>{{item.time}}</span>
+          </div>
         </nuxt-link>
       </div>
     </div>
@@ -95,19 +97,38 @@ export default {
       position relative
       img
         height 9.5rem
-    h2
-      color hsl(0, 0%, 0%)
-      font-size 0.4rem
-      margin-top 0.3rem
-      letter-spacing 2px
-    p
-      font-size 0.3rem
-      width 60%
-      letter-spacing 2px
-      margin-top 0.5rem
-    span
-      display inline-block
-      font-size 0.3rem
-      margin-top 0.5rem
-      color #b5b5b5
+    .text-wrapper
+      h2
+        color hsl(0, 0%, 0%)
+        font-size 0.4rem
+        margin-top 0.3rem
+        letter-spacing 2px
+      p
+        font-size 0.3rem
+        width 60%
+        letter-spacing 2px
+        margin-top 0.5rem
+      span
+        display inline-block
+        font-size 0.3rem
+        margin-top 0.5rem
+        color #b5b5b5
+
+
+  .hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    // box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+        transform: scale3d(1.05,1.05,05);
+}
 </style>
