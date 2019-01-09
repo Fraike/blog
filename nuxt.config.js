@@ -16,6 +16,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      
       { rel: 'stylesheet', type: 'text/css', href: 'http://cdn.webfont.youziku.com/webfonts/nomal/125046/46908/5c2c2d7bf629d90c54a4514b.css'}
     ],
     script: [
@@ -36,7 +37,8 @@ module.exports = {
     '@/assets/css/public/reset.css',
     '@/assets/css/public/border.css',
     'swiper/dist/css/swiper.css',
-    '@/assets/main.css'
+    '@/assets/main.css',
+    '@/assets/iconfont/iconfont.css'
   ],
 
   /*
@@ -45,7 +47,8 @@ module.exports = {
   plugins: [
     { src: "~/plugins/swiper.js", ssr: false },
     { src: "~/plugins/lazyload.js", ssr: false },
-    { src: "~/plugins/markdown.js", ssr: false }
+    { src: "~/plugins/markdown.js", ssr: false },
+    { src: "~/assets/iconfont/iconfont.js", ssr: false }
   ],
 
   /*

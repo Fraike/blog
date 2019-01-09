@@ -7,7 +7,12 @@
             </ul> -->
             <div class="material-tabs">
                 <ul class="tabbed-section__selector">
-                    <li @click="chooseTab(index)" v-for="(item,index) in navList" :key="index" class="" :class="['tabbed-section__selector-tab-'+(index+1),item.className]">{{item.name}}</li>
+                    <li @click="chooseTab(index)" v-for="(item,index) in navList" :key="index" class="" :class="['tabbed-section__selector-tab-'+(index+1),item.className]"> 
+                       <i className="iconfont">
+                           &#xe62c;
+                        </i>
+                        {{item.name}}
+                        </li>
                     <span class="tabbed-section__highlighter"></span>
                 </ul>
                 <div class="tabbed-section-1" :class="[navList[0].className=='active'?'visible':'hidden']">
@@ -87,15 +92,18 @@ export default {
             navList:[
                 {
                     name: '前端',
-                    className: 'active'
+                    className: 'active',
+                    icon: '&#xe63a;'
                 },
                 {
                     name: '设计',
-                    className: ''
+                    className: '',
+                    icon: '&#xe65e;'
                 },
                 {
                     name: '后台',
-                    className: ''
+                    className: '',
+                    icon: '&#xe8a3;'
                 }
             ]
         }
@@ -116,6 +124,9 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+
+
+
 $main-size= 16px;
     .link-container{
         width: 100%;
@@ -303,5 +314,11 @@ $main-size= 16px;
     z-index:10
 }
 
-
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 </style>

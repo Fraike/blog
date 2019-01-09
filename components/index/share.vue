@@ -29,6 +29,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import Loading from "~/components/public/loading/loading.vue";
+import "mavon-editor/dist/css/index.css";
 export default {
   data() {
     return {
