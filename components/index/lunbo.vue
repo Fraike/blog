@@ -8,7 +8,7 @@
 export default {
     data () {
         return {
-            imgUrl: require("~/assets/img/banner.jpg")
+            imgUrl: "http://images.lovewwt.com/banner.jpg"
         }
     }
 }

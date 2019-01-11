@@ -7,7 +7,7 @@ let router = new Router({
 
 
 router.get('/getInfo',async (ctx)=>{
-    let city = ctx.query.city || "北京"
+    let city = ctx.query.city || "深圳"
     let {
         status,
         data: { results }

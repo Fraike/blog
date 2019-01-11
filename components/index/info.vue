@@ -1,7 +1,8 @@
 <template>
     <div class="info-container">
         <div class="weather wow fadeIn" data-wow-delay="1s" ref="weather">
-          <img :src="weatherSrc" alt="">
+          <!-- <img :src="weatherSrc" alt=""> -->
+          <weather :num={weatherCode}></weather>
           <div>{{city}} {{weatherText}} {{weatherTem}}°</div>
         </div>
         <div class="oneTips wow fadeIn" v-show="one.isLoaded" data-wow-delay="1s">
@@ -22,6 +23,7 @@
 
 <script>
 import 'animate.css'
+import Weather from './weather.vue'
 export default {
   data() {
     return {
@@ -41,6 +43,9 @@ export default {
       }
     };
   },
+  components:{
+    Weather
+  },
   created() {
     if (typeof window !== 'undefined') {
     const WOW = require('wowjs')
@@ -56,7 +61,11 @@ export default {
     } = await self.$axios.get(
       `http://cp-tools.cn/geo/getPosition?sign=${sign}`
     );
-    self.city = city;
+    console.log(city == '')
+    self.city = city == '' ? "深圳":city;
+    console.log(self.city);
+    
+    
     let {
       status: status2,
       data: { results }
@@ -186,4 +195,9 @@ export default {
   font-size .5rem
   margin-top 2rem
   cursor pointer
+
+
+
+
+
 </style>
