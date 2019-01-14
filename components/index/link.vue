@@ -86,6 +86,7 @@
 </template>
 
 <script>
+
 export default {
     data(){
         return {
@@ -108,6 +109,9 @@ export default {
             ]
         }
     },
+    mounted() {
+        console.log('result'+this.result)
+    },
     methods: {
         chooseTab(v){
             this.navList.forEach((item,index)=>{
@@ -119,7 +123,7 @@ export default {
             })
             console.log(this.navList)
         }
-    },
+    }
 }
 </script>
 

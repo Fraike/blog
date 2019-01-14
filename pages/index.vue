@@ -40,7 +40,7 @@ import Info from "~/components/index/info.vue";
 import MyArticle from "~/components/index/article.vue";
 import Share from "~/components/index/share.vue";
 import LinkCom from "~/components/index/link.vue";
-import Footer from '@/components/public/footer/footer.vue';
+import Footer from "@/components/public/footer/footer.vue";
 import Loading from "~/components/public/loading/loading.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 import "animate.css";
@@ -151,7 +151,10 @@ export default {
       ) {
         let rect;
         rect = item.getBoundingClientRect();
-        if ((rect.top > self.offsetheight && item.dataset.original)||(self.isArticleShow && rect.top === 0)) {
+        if (
+          (rect.top > self.offsetheight && item.dataset.original) ||
+          (self.isArticleShow && rect.top === 0)
+        ) {
           !(function() {
             var img = new Image();
             img.src = item.dataset.original;
@@ -167,7 +170,20 @@ export default {
       setfullPageNum: "index/setfullPageNum",
       setisArticleShow: "index/setisArticleShow",
       setshowShare: "index/setshowShare"
-    })
+    }),
+    async asyncData(ctx) {
+      console.log("ctx" + ctx);
+      let {
+        status,
+        data: { code, result }
+      } = await ctx.$axios.get("/link/getLinks");
+      console.log(result);
+      if (status === 200 && code === 0) {
+        return {
+          result
+        };
+      }
+    }
   }
 };
 </script>
