@@ -7,9 +7,9 @@
             </ul> -->
             <div class="material-tabs">
                 <ul class="tabbed-section__selector">
-                    <li @click="chooseTab(index)" v-for="(item,index) in navList" :key="index" class="" :class="['tabbed-section__selector-tab-'+(index+1),item.className]"> 
-                       <i className="iconfont">
-                           &#xe62c;
+                    <li @click="chooseTab(index)" v-for="(item,index) in navList" :key="index"  :class="['tabbed-section__selector-tab-'+(index+1),item.className]"> 
+                       <i class="iconfont">
+                          {{item.icon}}
                         </i>
                         {{item.name}}
                         </li>
@@ -17,44 +17,26 @@
                 </ul>
                 <div class="tabbed-section-1" :class="[navList[0].className=='active'?'visible':'hidden']">
                   <ul class="itemWrapper">
-                      <li class="itemLi">
+                       <li class="itemLi" v-for="(item,index) in linkList.filter(tmp=>tmp.type=='qianduan')" :key="index">
                           <div class="logo">
-                              <img src="https://juejin.im/favicon.ico" alt="">
+                             <img :src="item.urlPath" alt="">
                           </div>
-                          <div>
-                              <p class="title">标题</p>
-                              <span class="subTitle">高质量的技术社区</span>
-                          </div>
-                      </li>
-                      <li class="itemLi">
-                          <div class="logo">
-                              <img src="https://juejin.im/favicon.ico" alt="">
-                          </div>
-                          <div>
-                              <p class="title">标题</p>
-                              <span class="subTitle">高质量的技术社区</span>
+                          <div class="text">
+                              <p class="title">{{item.title}}</p>
+                              <span class="subTitle">{{item.desc}}</span>
                           </div>
                       </li>
                   </ul>
                 </div>
                 <div class="tabbed-section-2" :class="[navList[1].className=='active'?'visible':'hidden']">
                    <ul class="itemWrapper">
-                      <li class="itemLi">
+                         <li class="itemLi" v-for="(item,index) in linkList.filter(tmp=>tmp.type=='desgin')" :key="index">
                           <div class="logo">
-                              <img src="https://juejin.im/favicon.ico" alt="">
+                              <img :src="item.urlPath" alt="">
                           </div>
                           <div>
-                              <p class="title">标题</p>
-                              <span class="subTitle">高质量的技术社区</span>
-                          </div>
-                      </li>
-                      <li class="itemLi">
-                          <div class="logo">
-                              <img src="https://juejin.im/favicon.ico" alt="">
-                          </div>
-                          <div>
-                              <p class="title">标题</p>
-                              <span class="subTitle">高质量的技术社区</span>
+                              <p class="title">{{item.title}}</p>
+                              <span class="subTitle">{{item.desc}}</span>
                           </div>
                       </li>
                   </ul>
@@ -86,7 +68,7 @@
 </template>
 
 <script>
-
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
     data(){
         return {
@@ -94,7 +76,7 @@ export default {
                 {
                     name: '前端',
                     className: 'active',
-                    icon: '&#xe63a;'
+                    icon: '&#xe65e;'
                 },
                 {
                     name: '设计',
@@ -108,9 +90,15 @@ export default {
                 }
             ]
         }
+
+    },
+    computed: {
+        ...mapState({
+        linkList: state => state.index.linkList
+        })
     },
     mounted() {
-        console.log('result'+this.result)
+        console.log(this.linkList)
     },
     methods: {
         chooseTab(v){
@@ -129,7 +117,22 @@ export default {
 
 <style lang='stylus' scoped>
 
+@font-face {
+  font-family: 'iconfont';  /* project id 1004847 */
+  src: url('//at.alicdn.com/t/font_1004847_6psybp1s49x.eot');
+  src: url('//at.alicdn.com/t/font_1004847_6psybp1s49x.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.svg#iconfont') format('svg');
+}
 
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
 
 $main-size= 16px;
     .link-container{
@@ -176,9 +179,8 @@ $main-size= 16px;
   margin-top:60px
 
   img {
-    display: block;
-    width: 80%;
-    margin: auto 10%;
+    width: 100%;
+    height: 100%;
   }
 }
 .tabbed-section__selector {
@@ -309,8 +311,15 @@ $main-size= 16px;
 
 
 .logo {
-    margin-right: .2rem;
-    z-index:10
+    margin-right: 0.2rem;
+    z-index: 10;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    vertical-align: middle;
 }
 .title {
     margin-bottom: .1rem
@@ -324,5 +333,16 @@ $main-size= 16px;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+.subTitle {
+    // font-size: .75rem;
+    display: block;
+    color: #6d7380;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.text {
+    width: 75%
 }
 </style>

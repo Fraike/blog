@@ -9,7 +9,7 @@ let router = new Router({
 
 router.get("/getLinks",async (ctx)=>{
     const result = await Share.find()
-    console.log(result)
+    // console.log(result)
     ctx.body = {
         code: 0,
         result

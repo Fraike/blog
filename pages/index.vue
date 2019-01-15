@@ -97,7 +97,7 @@ export default {
   // },
   activated() {
     let self = this;
-
+    // console.log('results' + this.result)
     if (document.addEventListener) {
       this.offsetheight = document.documentElement.clientHeight;
       // document.addEventListener("DOMMouseScroll", this.scroll, false);
@@ -171,19 +171,18 @@ export default {
       setisArticleShow: "index/setisArticleShow",
       setshowShare: "index/setshowShare"
     }),
-    async asyncData(ctx) {
-      console.log("ctx" + ctx);
-      let {
-        status,
-        data: { code, result }
-      } = await ctx.$axios.get("/link/getLinks");
-      console.log(result);
-      if (status === 200 && code === 0) {
-        return {
-          result
-        };
-      }
-    }
+    // async asyncData(ctx) {
+    //   let {
+    //     status,
+    //     data: { code, result }
+    //   } = await ctx.$axios.get("/link/getLinks");
+    //   // console.log(result);
+    //   if (status === 200 && code === 0) {
+    //     return {
+    //       result
+    //     };
+    //   }
+    // }
   }
 };
 </script>

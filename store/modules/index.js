@@ -4,7 +4,8 @@ const state = () => ({
   isArticleShow: false,
   imgList: [],
   shareTop: null,
-  isShowShare:false
+  isShowShare:false,
+  linkList: []
 })
 
 const mutations = {
@@ -26,6 +27,9 @@ const mutations = {
   },
   setshowShare(state,val){
     state.isShowShare = val
+  },
+  setlinkList(state,val){
+    state.linkList = val
   }
 }
 
@@ -60,6 +64,11 @@ const actions = {
     commit
   }, isShowShare) => {
     commit('setshowShare', isShowShare)
+  },
+  setlinkList: ({
+    commit
+  }, linkList) => {
+    commit('setlinkList', linkList)
   }
 }
 
