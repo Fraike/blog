@@ -8,7 +8,7 @@
             <div class="material-tabs">
                 <ul class="tabbed-section__selector">
                     <li @click="chooseTab(index)" v-for="(item,index) in navList" :key="index"  :class="['tabbed-section__selector-tab-'+(index+1),item.className]"> 
-                       <i class="iconfont">
+                       <i class="iconfont" v-html="item.icon">
                           {{item.icon}}
                         </i>
                         {{item.name}}
@@ -76,7 +76,7 @@ export default {
                 {
                     name: '前端',
                     className: 'active',
-                    icon: '&#xe65e;'
+                    icon: '&#xe66a;'
                 },
                 {
                     name: '设计',
@@ -86,9 +86,10 @@ export default {
                 {
                     name: '后台',
                     className: '',
-                    icon: '&#xe8a3;'
+                    icon: '&#xe66b;'
                 }
-            ]
+            ],
+            tmp : '&#xe65e;'
         }
 
     },
@@ -117,22 +118,7 @@ export default {
 
 <style lang='stylus' scoped>
 
-@font-face {
-  font-family: 'iconfont';  /* project id 1004847 */
-  src: url('//at.alicdn.com/t/font_1004847_6psybp1s49x.eot');
-  src: url('//at.alicdn.com/t/font_1004847_6psybp1s49x.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1004847_6psybp1s49x.svg#iconfont') format('svg');
-}
 
-.iconfont{
-    font-family:"iconfont" !important;
-    font-size:16px;font-style:normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;}
 
 $main-size= 16px;
     .link-container{
@@ -200,7 +186,6 @@ $main-size= 16px;
     width: 100px;
     text-align: center;
     background: #fff;
-    font-weight: bold;
     text-decoration: none;
     color: black;
     font-size: 14px;
