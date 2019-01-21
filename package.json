@@ -23,6 +23,7 @@
     "mavon-editor": "^2.6.17",
     "mongoose": "^5.3.15",
     "nuxt": "^2.0.0",
+    "simple-netease-cloud-music": "^0.4.4",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-awesome-swiper": "^3.1.3",

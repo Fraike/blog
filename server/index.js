@@ -12,6 +12,7 @@ import dbConfig from './dbs/config'
 import info from './interface/info'
 import article from './interface/article'
 import link from './interface/link'
+import music from './interface/music'
 
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
@@ -52,6 +53,7 @@ async function start() {
   app.use(info.routes()).use(info.allowedMethods())
   app.use(article.routes()).use(article.allowedMethods())
   app.use(link.routes()).use(link.allowedMethods())
+  app.use(music.routes()).use(music.allowedMethods())
   
 
 
