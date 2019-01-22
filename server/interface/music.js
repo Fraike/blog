@@ -17,7 +17,6 @@ router.get("/getMusic",async (ctx)=>{
 router.get("/getMusicUrl",async (ctx)=>{
     let id = ctx.query.id
     const result = await nm.url(id)
-    console.log(result)
     ctx.body = {
         code: 0,
         result

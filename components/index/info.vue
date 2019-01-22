@@ -61,9 +61,7 @@ export default {
     } = await self.$axios.get(
       `http://cp-tools.cn/geo/getPosition?sign=${sign}`
     );
-    console.log(city == '')
     self.city = city == '' ? "深圳":city;
-    console.log(self.city);
     
     
     let {
