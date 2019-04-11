@@ -32,20 +32,20 @@ export default {
       articleList: [
         {
           title: "Get in infomation",
-          imgUrl: "http://images.lovewwt.com/article1.jpg",
+          imgUrl: "http://cdn.mitty.work/article1.jpg",
           subtitle: "Smile. Swim. Dazzle: Water ballet in the hollywood hills.",
           time: "23/11/2017"
         },
         {
           title: "Get in infomation",
-          imgUrl: "http://images.lovewwt.com/article2.jpg",
+          imgUrl: "http://cdn.mitty.work/article2.jpg",
           subtitle: "Smile. Swim. Dazzle: Water ballet in the hollywood hills.",
           time: "23/11/2017"
         },
         {
           title: "Get in infomation",
           // imgUrl: require("@/assets/img/article/article3.jpg"),
-          imgUrl: "http://images.lovewwt.com/article3.jpg",
+          imgUrl: "http://cdn.mitty.work/article3.jpg",
           subtitle: "Smile. Swim. Dazzle: Water ballet in the hollywood hills.",
           time: "23/11/2017"
         }

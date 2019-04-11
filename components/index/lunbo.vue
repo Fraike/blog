@@ -8,7 +8,7 @@
 export default {
     data () {
         return {
-            imgUrl: "http://images.lovewwt.com/banner.jpg"
+            imgUrl: "http://cdn.mitty.work/banner.jpg"
         }
     }
 }
